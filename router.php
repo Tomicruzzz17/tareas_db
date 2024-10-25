@@ -1,5 +1,6 @@
 <?php
-require_once 'app/tasks.php';
+
+require_once 'app/controllers/task.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -12,14 +13,27 @@ if (!empty($_GET["action"])){
 }
 //listar-> showTasks();
 //agregar-> addTask();
+//eliminar/:ID -> deleteTask();
+//finalizar/:ID-> finishTask();
 $params = explode("/",$action);
 
 switch ($params[0]) {
     case 'listar':
-        showTasks();
+        $controller= new TaskController();
+        $controller->showTasks();
         break;
     case 'agregar':
-        addTask();
+        $controller= new TaskController();
+        $controller->addTask();
+        break;
+    case 'eliminar':
+        $controller= new TaskController();
+        $controller->removeTask($params[1]);  //por parametro le paso la ubicacion del id, el cual sera utilizado para eliminar la tarea.
+        break;
+        
+    case 'finalizar':
+        $controller= new TaskController();
+        $controller->finishTask($params[1]);
         break;
  
     default:

@@ -1,0 +1,4 @@
+.item-task.finalizada{
+    opacity: 0.5;
+    text-decoration: line-through;
+}
