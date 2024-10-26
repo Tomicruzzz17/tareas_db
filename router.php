@@ -1,6 +1,7 @@
 <?php
 
 require_once 'app/controllers/task.controller.php';
+require_once 'app/controllers/auth.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -35,6 +36,13 @@ switch ($params[0]) {
         $controller= new TaskController();
         $controller->finishTask($params[1]);
         break;
+    case 'showLogin':
+        $controller = new AuthController();
+        $controller->showLogin();
+        break;
+    case 'login':
+        $controller = new AuthController();
+        $controller->login();
  
     default:
         echo "Error 404";
